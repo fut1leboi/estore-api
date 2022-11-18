@@ -22,11 +22,27 @@ export default function Header(): JSX.Element{
         dispatch(actions.clear());
     }
 
-    const UserProfilePicture: ()=>JSX.Element = () => {
+    const UserAuthorizedComponent: ()=>JSX.Element = () => {
         let source: any = user.profile_picture || 'images/person_placeholder.jpg';
-        console.log(source);
         return (
-            <img alt='profile picture' className='header-nav__icon' src={source}/>
+            <>
+                <Link to='/profile'>
+                    <img alt='Profile picture' className='header-nav__profile-picture' src={source}/>
+                </Link>
+                <Dropdown>
+                    <DropdownItem>
+                        <button onClick={handleSignOut}>Выйти</button>
+                    </DropdownItem>
+                </Dropdown>
+            </>
+        )
+    }
+
+    const AnonymousComponent: ()=>JSX.Element = () => {
+        return (
+            <button onClick={()=>setModalVisible(!isModalVisible)}>
+                <img alt='Auth actions' className='header-nav__icon' src={'/images/person.svg'}/>
+            </button>
         )
     }
 
@@ -62,10 +78,9 @@ export default function Header(): JSX.Element{
                                 <Link to="/"><img className='header-nav__icon' src='/images/cart.svg'/></Link>
                             </li>
                             <li className="header-nav__item">
-                                <button onClick={()=>isAuthorized ? handleSignOut() : setModalVisible(!isModalVisible)}>
-                                    {isAuthorized ? <UserProfilePicture/> : <img className='header-nav__icon' src={'/images/person.svg'}/>}
-
-                                </button>
+                                {
+                                    isAuthorized ? <UserAuthorizedComponent/> : <AnonymousComponent/>
+                                }
                             </li>
                         </ul>
                     </nav>

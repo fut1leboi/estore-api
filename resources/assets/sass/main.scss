@@ -145,9 +145,13 @@
             border-radius: 50%;
             transition: 0.1s linear all;
             &:hover{
-                // transform: scale(2);
                 padding: 7px;
             }
+        }
+        &__profile-picture{
+            height: 48px;
+            width: 48px;
+            border-radius: 50%;
         }
     }
     &__inner{
@@ -477,6 +481,8 @@
     }
     &__trigger{
         display: flex;
+        padding: 0 5px;
+        width: 100%;
     }
     &__arrow-wrapper{
         transition: 0.1s linear all;

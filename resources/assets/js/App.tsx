@@ -13,6 +13,7 @@ import {
 import Product from './pages/Product';
 import {useDispatch} from "react-redux";
 import AuthActions from "./actions/AuthActions";
+import Profile from "./pages/Profile";
 
 export default function App(): JSX.Element{
 
@@ -33,6 +34,7 @@ export default function App(): JSX.Element{
                     <Route path="/" element={<Home/>}/>
                     <Route path="/locations" element={<Locations/>}/>
                     <Route path="/product/:id" element={<Product/>}/>
+                    <Route path="/Profile" element={<Profile/>}/>
                 </Routes>
 
             </main>

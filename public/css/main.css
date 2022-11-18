@@ -255,6 +255,11 @@ body {
 .header-nav__icon:hover {
   padding: 7px;
 }
+.header-nav__profile-picture {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+}
 .header__inner {
   display: flex;
   justify-content: space-between;
@@ -586,6 +591,8 @@ body {
 }
 .dropdown__trigger {
   display: flex;
+  padding: 0 5px;
+  width: 100%;
 }
 .dropdown__arrow-wrapper {
   transition: 0.1s linear all;
