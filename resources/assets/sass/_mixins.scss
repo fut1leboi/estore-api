@@ -1,0 +1,46 @@
+@mixin font($size){
+    font-size: calc($size/$default_font_size) * 1em;
+}
+
+@mixin underlineSmoothAppeareance($color){
+    position: relative;
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        height: 3px;
+        transition: 0.1s linear all;
+    }
+    &:hover::after{
+        opacity: 1;
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        width: 100%;
+        background-color: $color;
+    }
+}
+
+@keyframes fadeOut {
+    0%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+@keyframes slideDown {
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
