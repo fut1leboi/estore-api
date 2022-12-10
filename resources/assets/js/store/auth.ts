@@ -1,9 +1,8 @@
+import {User} from "../types";
+
 interface authStoreInterface {
     isAuthorized: boolean,
-    user?: {
-        name: string | null,
-        profile_picture: string | null
-    }
+    user?: User
 }
 
 import AuthActions from "../actions/AuthActions";

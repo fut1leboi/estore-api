@@ -12,7 +12,7 @@ export default function AuthorizationModal(props: {visible: boolean, closeCallba
     const [error, setError] = React.useState<string>('');
     const dispatch: any = useDispatch();
 
-    const handleValidate: (proceedAction: ()=>void)=>void = (proceedAction: ()=>void) => {
+    const handleValidate: (proceedAction: ()=>void)=>void = (proceedAction) => {
         setError('');
         if(name.toString().trim() === '' || password.toString().trim() === ''){
             setError('Заполните все поля');
@@ -22,7 +22,7 @@ export default function AuthorizationModal(props: {visible: boolean, closeCallba
     }
 
     const handleSignUp: ()=>void = () => {
-        const authActions: any = new AuthActions();
+        const authActions: AuthActions = new AuthActions();
         const Request = new APIRequest();
         Request.signUp(name, password)
             .then(res=> {
@@ -36,7 +36,7 @@ export default function AuthorizationModal(props: {visible: boolean, closeCallba
     }
 
     const handleSignIn: ()=>void = () => {
-        const authActions: any = new AuthActions();
+        const authActions: AuthActions = new AuthActions();
         const Request = new APIRequest();
 
         Request.signIn(name, password)
@@ -62,7 +62,8 @@ export default function AuthorizationModal(props: {visible: boolean, closeCallba
                             <input value={password} placeholder='Пароль' type="password" onChange={(e)=>setPassword(e.target.value)} name="password" className='auth__field'/>
                         </div>
                         <button className="auth__control" onClick={()=>setWrapLayoutActive(wrapLayoutActive+1)}>Еще нет аккаунта?</button>
-                    <button onClick={()=>handleValidate(handleSignIn)} className='auth__button'>Войти</button>
+                        <button className="auth__control" onClick={()=>setWrapLayoutActive(wrapLayoutActive-1)}>Забыли пароль?</button>
+                        <button onClick={()=>handleValidate(handleSignIn)} className='auth__button'>Войти</button>
 
                     </div>
                     <div className="auth">

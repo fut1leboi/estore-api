@@ -2,7 +2,7 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "npm i --legacy-peer-deps && composer update"
+        "build": "npm i --legacy-peer-deps && composer update --ignore-platform-req=ext-fileinfo"
     },
     "devDependencies": {
         "axios": "^1.1.3",

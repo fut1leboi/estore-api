@@ -9,7 +9,6 @@
 </head>
 <body>
 <div id="root"></div>
-
 <script src="{{mix('/js/main.js')}}"></script>
 </body>
 </html>

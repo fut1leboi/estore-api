@@ -18,12 +18,13 @@ export default function Header(): JSX.Element{
     const dispatch:any = useDispatch();
 
     const handleSignOut: ()=>void = ()=>{
-        const actions = new AuthActions();
+        const actions: AuthActions = new AuthActions();
         dispatch(actions.clear());
+        localStorage.removeItem('auth');
     }
 
     const UserAuthorizedComponent: ()=>JSX.Element = () => {
-        let source: any = user.profile_picture || 'images/person_placeholder.jpg';
+        let source: string = user.profile_picture || 'images/person_placeholder.jpg';
         return (
             <>
                 <Link to='/profile'>

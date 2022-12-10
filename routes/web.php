@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Route::post('/user/signup', [UserAPI::class, 'signUp']);
 Route::post('/user/signin', [UserAPI::class, 'signIn']);
+Route::post('/user/profile_picture', [UserAPI::class, 'updateProfilePicture']);

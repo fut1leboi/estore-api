@@ -1,8 +1,9 @@
 let mix = require('laravel-mix');
 
 mix
-    .js("resources/assets/js/main.tsx", "public/js")
-    .sass("resources/assets/sass/main.scss", "public/css")
+    .js("./resources/assets/js/main.tsx", "./public/js")
+    .sass("./resources/assets/sass/main.scss", "./public/css")
+    .disableNotifications()
     .webpackConfig({
         module: {
             rules: [
@@ -16,4 +17,5 @@ mix
         resolve: {
             extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"]
         }
-    });
+    })
+    .version();

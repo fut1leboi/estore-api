@@ -16,11 +16,11 @@ class UserAPI extends Controller
     public function signUp(Request $request){
         if(!$this->userExists($request->input('name'))) {
             $user = new User();
-//            $user->name = $request->input('name');
-//            $user->password = bcrypt($request->input('password'));
-//            $user->save();
-            $user->create($request->only('name', 'password'));
-            return response('');
+            $user = $user->create([
+                'name'=>$request->input('name'),
+                'password'=>password_hash($request->input('password'), PASSWORD_DEFAULT)]
+            );
+            return response($user->only('name', 'id', 'profile_picture'));
         }
         else{
             return response(['message'=>'Пользователь с таким именем уже существует'], 403);
@@ -30,16 +30,29 @@ class UserAPI extends Controller
 
     public function signIn(Request $request){
         if($this->userExists($request->input('name'))) {
-            $user = User::where($request->only('name', 'password'))->first(['name', 'profile_picture']);
-
-            return $user ? response($user->toArray()) : response('Неверный пароль', 403);
+            $user = User::where($request->only('name'))->first();
+            if(password_verify($request->input('password'), $user->password)){
+                return response($user->only('name', 'profile_picture', 'id'));
+            }
+            return response(['message'=>'Неверный пароль'], 403);
         }
         else{
             return response(['message'=>'Логин или пароль не совпадают'], 403);
         }
     }
 
-    public function updateProfilePicture(Request $request): void{
-
+    public function updateProfilePicture(Request $request){
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $input['imageName'] = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $input['imageName']);
+            $user = User::where($request->only('id'))->first();
+            $user->profile_picture = '/uploads/' . $input['imageName'];
+            $user->save();
+            return response($user->only('name', 'profile_picture', 'id'));
+        }
+        else{
+            return response(['message'=>'Какие-то обязательные параметры отсутствуют'], 403);
+        }
     }
 }

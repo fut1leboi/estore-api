@@ -16,7 +16,6 @@ import AuthActions from "./actions/AuthActions";
 import Profile from "./pages/Profile";
 
 export default function App(): JSX.Element{
-
     const dispatch = useDispatch();
     React.useEffect(()=>{
         const authActions = new AuthActions();
@@ -34,7 +33,7 @@ export default function App(): JSX.Element{
                     <Route path="/" element={<Home/>}/>
                     <Route path="/locations" element={<Locations/>}/>
                     <Route path="/product/:id" element={<Product/>}/>
-                    <Route path="/Profile" element={<Profile/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
                 </Routes>
 
             </main>

@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
         "noImplicitAny": false,
-        "sourceMap": false,
+        "sourceMap": true,
         "target": "es5",
         "module": "es6",
         "jsx": "react",
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "node"
     },
-    "include": ["resources/assets/js/**/*"]
+    "include": ["./resources/assets/js/**/*"]
 }
