@@ -3,9 +3,13 @@ import Container from '../components/Container';
 import ProductCard from '../components/product';
 import CustomSlider from '../components/slider';
 import { productsData } from '../dummies';
+import APIRequest from '../http/APIRequest';
+import useSWR from "swr";
 
 export default function Home(){
 
+    const {data, error, isLoading}:any = useSWR('/api/product/get_list/0/8/DESC', APIRequest.get);
+    console.log(data, error, isLoading);
     let sliderImages = [
         {
             original: '/images/slider_2.jpg',

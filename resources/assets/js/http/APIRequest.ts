@@ -1,12 +1,12 @@
 import axios from "axios";
 
 export default class APIRequest{
-    requestDomain:string;
-    config: any;
-    auth: {id: string|number, token: string};
+    private readonly requestDomain:string;
+    private readonly config: any;
+    protected auth: {id: string|number, token: string};
     constructor(userId = null, token = null) {
 
-        this.requestDomain = '/';//localhost
+        this.requestDomain = '/api/'; //localhost
         this.auth = {id: userId, token: token}; //mandatory params to make requests
         this.config = {
             headers: {
@@ -15,19 +15,32 @@ export default class APIRequest{
         }
     }
 
-    makeAuthorizedRequest(url: string, data:any): Promise<any>{
+    public static get(url: string){
+        return axios.get(url).then(res=>res.data);
+    }
+
+    public static post(args: any){
+        return axios.post(args).then(res=>res.data);
+    }
+
+
+    public makeAuthorizedRequest(url: string, data:any): Promise<any>{
         return axios.post(url, {...this.auth, ...data}, this.config)
     }
 
-    signUp(name: string, password: string): Promise<any>{
-        return axios.post(`${this.requestDomain}user/signup`,{name: name, password: password}, this.config);
+    public signUp(email: string, password: string): Promise<any>{
+        return axios.post(`${this.requestDomain}user/sign_up`, {email: email, password: password}, this.config);
     }
 
-    signIn(name: string, password: string): Promise<any>{
-        return axios.post(`${this.requestDomain}user/signin`,{name: name, password: password}, this.config);
+    public signIn(email: string, password: string): Promise<any>{
+        return axios.post(`${this.requestDomain}user/sign_in`, {email: email, password: password}, this.config);
     }
 
-    updateProfilePicture(image: any): Promise<any>{
-        return this.makeAuthorizedRequest(`${this.requestDomain}user/profile_picture`, {image: image})
+    public updateProfilePicture(image: any): Promise<any>{
+        return this.makeAuthorizedRequest(`${this.requestDomain}user/profile_picture`, {image: image});
+    }
+
+    public getProductsList(length = 8, offset = 0, sort="DESC"){
+        return axios.post(`${this.requestDomain}products/get`, {length: length, offset: offset, sort: sort}, this.config);
     }
 }

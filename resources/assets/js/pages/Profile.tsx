@@ -7,6 +7,9 @@ import historyIcon from '../../img/material/history.svg';
 import statisticsIcon from '../../img/material/statistics.svg';
 import APIRequest from "../http/APIRequest";
 import AuthActions from "../actions/AuthActions";
+import ConfigurationTab from "../components/profile_tabs/Configuration";
+import useSWR from 'swr';
+
 
 interface ProfileTab{
     name: string,
@@ -36,7 +39,7 @@ export default function Profile(): JSX.Element{
         {
             name: 'Конфигурация',
             icon: gearIcon,
-            component: <>Конфигурация</>
+            component: <ConfigurationTab/>
         },
         {
             name: 'Статистика',
@@ -60,7 +63,7 @@ export default function Profile(): JSX.Element{
                         <label className='profile-picture__trigger' htmlFor="profile-picture">Изменить</label>
                         <input onChange={handleProfilePictureChange} type="file" accept='image/png,image/jpeg' id='profile-picture' className="profile-picture__input"/>
                     </div>
-                    <p className="profile__name">{user.name}</p>
+                    <p className="profile__name">{user.email}</p>
                     <nav className="profile-nav">
                         <ul className="profile-nav__list">
                             {

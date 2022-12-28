@@ -18,7 +18,7 @@ import Profile from "./pages/Profile";
 export default function App(): JSX.Element{
     const dispatch = useDispatch();
     React.useEffect(()=>{
-        const authActions = new AuthActions();
+        const authActions: AuthActions = new AuthActions();
         const auth = localStorage.getItem('auth');
         if(auth !== null)
             dispatch(authActions.set(JSON.parse(auth)));

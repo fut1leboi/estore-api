@@ -259,13 +259,30 @@
 .product{
     max-width: 350px;
     &__header{
-        // height:30%;
+        position: relative;
         width: 100%;
         overflow: hidden;
     }
     &__image{
-
         width: 100%;
+    }
+
+    &__interaction-button{
+        border-radius: 10px;
+        position: absolute;
+        bottom: 5%;
+        right: 5%;
+        padding: 10px 0;
+        color: #fff;
+        background: $primary;
+        transition: 0.2s linear background;
+        &:hover{
+            background: lighten($primary, 10);
+        }
+    }
+    &__interaction-cart{
+        width: 50%;
+        height: auto;
     }
 
 
@@ -581,5 +598,29 @@
             height: 22px;
         }
         margin-top: 40px;
+    }
+}
+
+.profile-tab{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+    &__title{
+        font-weight: 400;
+        @include font(24);
+    }
+    &__block{
+        margin-left: 20px;
+
+    }
+    &__subtitle{
+        font-weight: 400;
+    }
+    &__fieldset{
+        justify-content: space-between;
+        display: flex;
+        margin-top: 10px;
+        border: none;
     }
 }

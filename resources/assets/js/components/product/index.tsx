@@ -11,6 +11,10 @@ export default function ProductCard(props: {productData?: any}): JSX.Element{
         <div className="product">
             <div className="product__header">
                 <img src={'images/longsleeve.jpg'} alt="product" className="product__image" />
+
+                <button className="product__interaction-button">
+                    <img src="/images/cart_white.svg" className='product__interaction-cart' alt="cart"/>
+                </button>
             </div>
             <div className="product__panel">
                 <p className="product__name">{props.productData?.name}</p>
